@@ -13,7 +13,9 @@ Gameplay en deux étapes :
  Mensonges et scénarios :
  - Trame principale linéaire, le mensonge principal rajoute une difficulté le jour suivant
  - Mensonges secondaires ajoutent des évènnements secondaires.
- - Mensonges non systématiquement punitifs
+ - Le mensonge peut être positif ou négatif : 
+      - Crée des interactions, éclaircit l'environnement
+      - Se met des personnes à dos, supprime des PNJ
  
  Graphismes et son :
  - Flat design
@@ -24,4 +26,5 @@ Gameplay en deux étapes :
  - Coup de téléphone
  - cactus
  - A la fin, le personnage casse le 4ème mur et informe le joueur que tout le jeu a été un mensonge.
+ - Personnages à la beholder
  
