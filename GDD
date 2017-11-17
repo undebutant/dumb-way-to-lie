@@ -1,0 +1,19 @@
+Gameplay en deux étapes :
+  - Phase de plateformer scroller & dialogue innitial
+  - Phase de mensonge 
+  - Conséquences (visibles immédiatement ou aux boucles suivantes)
+  
+  Phase de plateforme :
+    - Toujours dans le même sens, linéarité
+    - maison -> rue -> travaille ( -> rue en miroir -> maison)
+    - Difficultées ajoutée en fonction des mensonges
+    - plateformes intégrées dans le décors (tables, stores, traveaux...)
+    - champ de vision de la caméra en fonction des mensonges (bandes noires...)
+    
+ Mensonges et scénarios :
+ - Trame principale linéaire, le mensonge principal rajoute une difficulté le jour suivant
+ - Mensonges secondaires ajoutent des évènnements secondaires.
+ - Mensonges non systématiquement punitifs
+ 
+ Graphismes :
+ - Flat design
