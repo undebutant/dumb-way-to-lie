@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour {
 
-
+    
  
     // Use this for initialization
     void Start ()
@@ -18,12 +18,36 @@ public class InputController : MonoBehaviour {
 		
 	}
 
-    float getXAxis()
+    static public float getXAxis()
     {
-        return Input.getAxis("Horizontal");
+        return Input.GetAxis("Horizontal");
 
     }
 
+    static public float getYAxis()
+    {
+        return Input.GetAxis("Vertical");
+    }
+
+    static public bool getInteractionButton()
+    {
+        return Input.GetButtonUp("Fire1");
+    }
+
+    static public bool getSprintButtonDown()
+    {
+        return Input.GetButtonDown("Fire2");
+    }
+
+    static public bool getSprintButtonUp()
+    {
+        return Input.GetButtonUp("Fire2");
+    }
+
+    static public bool getJump()
+    {
+        return Input.GetButtonDown("Jump");
+    }
 
 
 }
