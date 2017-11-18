@@ -1,0 +1,39 @@
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT Billy (encounter)+>
+<!ATTLIST Billy
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT encounter (step)+>
+<!ATTLIST encounter
+  xmlns CDATA #FIXED ''
+  id CDATA #REQUIRED
+  posX CDATA #REQUIRED
+  posY CDATA #REQUIRED>
+
+<!ELEMENT step (textPNJ,choice+)>
+<!ATTLIST step
+  xmlns CDATA #FIXED ''
+  idStep CDATA #REQUIRED
+  incompatibleEventID NMTOKEN #IMPLIED
+  requiredEventID NMTOKEN #IMPLIED>
+
+<!ELEMENT textPNJ (#PCDATA)>
+<!ATTLIST textPNJ
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT choice (textButton,textDisplay,eventID?)>
+<!ATTLIST choice
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT textButton (#PCDATA)>
+<!ATTLIST textButton
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT textDisplay (#PCDATA)>
+<!ATTLIST textDisplay
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT eventID (#PCDATA)>
+<!ATTLIST eventID
+  xmlns CDATA #FIXED ''>
