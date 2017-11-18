@@ -7,7 +7,10 @@ public class NPC : Interactible {
     public override void doSomeStuff()
     {
         base.doSomeStuff();
-        Debug.Log("COUCOU");
+        CanvasManager.displayChoice(this.idEvent);
+        SideScrolling.ChangeTarget(this.gameObject);
+        SideScrolling.zoomOnTarget();
+
     }
 
     // Use this for initialization

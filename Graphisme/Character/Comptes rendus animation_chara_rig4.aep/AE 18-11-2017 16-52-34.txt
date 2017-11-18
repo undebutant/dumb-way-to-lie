@@ -1,0 +1,12 @@
+Adobe After Effects v14.0 Windows 64 - Compte rendu du projet animation_chara_rig4.aep
+
+Début du rendu le 18/11/2017 à 16:52:34
+
+  18/11/2017 16:52:34 : début de la composition run_rendu.
+
+  Destin. : C:\Users\noemi\Documents\dumb-way-to-lie\Graphisme\Character\Export\Run\run_rendu\run_[#####].png    18/11/2017 16:52:46 : fin de la composition run_rendu.
+
+
+  Temps total écoulé : 12 Secondes
+Compte-rendu terminé le 18/11/2017 à 16:52:46
+
