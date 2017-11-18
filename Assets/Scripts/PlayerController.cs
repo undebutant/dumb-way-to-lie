@@ -155,7 +155,8 @@ public class PlayerController : MonoBehaviour,Interactor {
             facingRigh = true;
             if (!oldDirection)
             {
-                spRender.flipX = false;
+                if (spRender != null)
+                    spRender.flipX = false;
                 oldDirection = facingRigh;
             }
             
@@ -166,7 +167,8 @@ public class PlayerController : MonoBehaviour,Interactor {
             facingRigh = false;
             if (oldDirection)
             {
-                spRender.flipX = true;
+                if(spRender != null)
+                    spRender.flipX = true;
                 oldDirection = facingRigh;
             }
         }
