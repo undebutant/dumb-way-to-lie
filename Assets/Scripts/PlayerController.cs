@@ -21,14 +21,22 @@ public class PlayerController : MonoBehaviour,Interactor {
 
     #endregion
 
+
+
     Rigidbody2D r;
     Vector3 acceleration;
     private Interactible interactible = null;
+
 
     public void removeInteractible(Interactible i)
     {
         if (this.interactible == i)
             this.interactible = null;
+    }
+
+    public void setCheckpoint(CheckPoint c)
+    {
+        throw new System.NotImplementedException();
     }
 
     public void setInteractible(Interactible i)
@@ -60,6 +68,7 @@ public class PlayerController : MonoBehaviour,Interactor {
         if (InputController.getJump())
         {
             this.r.AddForce(Vector2.up * jumpHeight);
+            this.r.AddForce(acceleration * inertiaFactor);
             //this.r.velocity = acceleration * inertiaFactor;
         }
 
@@ -83,5 +92,9 @@ public class PlayerController : MonoBehaviour,Interactor {
             this.interactible = null;
         }
 
+        if (this.transform.position.y < -20)
+        {
+            Player.die();
+        }
     }
 }
