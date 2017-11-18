@@ -1,0 +1,17 @@
+Adobe After Effects v14.0 Windows 64 - Compte rendu du projet animation_chara_rig4.aep
+
+Début du rendu le 18/11/2017 à 15:24:44
+
+  18/11/2017 15:24:44 : début de la composition idle_rendu.
+
+  Destin. : C:\Users\noemi\Documents\dumb-way-to-lie\Graphisme\Character\Export\Idle\idle_[#####].png    18/11/2017 15:25:20 : fin de la composition idle_rendu.
+
+
+  18/11/2017 15:25:20 : début de la composition walk_rendu.
+
+  Destin. : C:\Users\noemi\Documents\dumb-way-to-lie\Graphisme\Character\Export\Idle\walk_[#####].png    18/11/2017 15:25:47 : fin de la composition walk_rendu.
+
+
+  Temps total écoulé : 1 min, 3 sec
+Compte-rendu terminé le 18/11/2017 à 15:25:47
+
