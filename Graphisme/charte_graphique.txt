@@ -1,0 +1,20 @@
+Illustrator parti pris graphique
+
+Effet/texture/Grain
+-contraste : 50
+-intensité : 10
+
+Ombre porté
+-opacité 30
+-décalage 0
+-atténuation 6
+
+opacité Background 25
+
+Lueur interne
+-noir
+-normal
+-opacité 15
+-atténuation 10
+
+Couleur pastel
