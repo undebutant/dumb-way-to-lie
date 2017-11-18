@@ -131,6 +131,8 @@ public class SideScrolling : MonoBehaviour {
             yield return new WaitForFixedUpdate();
         }
 
+        c.orthographicSize = Mathf.Round(c.orthographicSize);
+
         isZooming = false;
 
     }

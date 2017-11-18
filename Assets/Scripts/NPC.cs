@@ -12,7 +12,6 @@ public class NPC : Interactible {
 
     // Use this for initialization
     void Start () {
-		
 	}
 	
 	// Update is called once per frame

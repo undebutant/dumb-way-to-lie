@@ -14,7 +14,11 @@ public class PlayerController : MonoBehaviour,Interactor {
     private float jumpHeight = 5;
     [SerializeField]
     [Tooltip("Facteur de vitesse, utilisé pour le sprint et potentiel bonus / malus.")]
-    private float accelerationFactor = 1; 
+    private float accelerationFactor = 1;
+    [SerializeField]
+    [Tooltip("Facteur d'inerrtie, faut pas abuser non plus. (<100 )")]
+    private float inertiaFactor = 70;
+
     #endregion
 
     Rigidbody2D r;
@@ -50,11 +54,26 @@ public class PlayerController : MonoBehaviour,Interactor {
             accelerationFactor /= 2;
         }
 
+        acceleration.x = InputController.getXAxis() * playerSpeedFactor * Time.deltaTime * accelerationFactor;
+
+
         if (InputController.getJump())
         {
             this.r.AddForce(Vector2.up * jumpHeight);
+            //this.r.velocity = acceleration * inertiaFactor;
         }
 
+        /*
+        if(r.velocity.x != 0)
+        {
+
+            float tmpx = (acceleration.x > 0)
+                ? Mathf.Min(0, r.velocity.x - acceleration.x)
+                : Mathf.Max(0, r.velocity.x + acceleration.x);
+            r.velocity = new Vector2(tmpx, r.velocity.y);
+
+        }
+        */
         acceleration.x = InputController.getXAxis() * playerSpeedFactor*Time.deltaTime*accelerationFactor;
         this.transform.Translate(acceleration);
 
