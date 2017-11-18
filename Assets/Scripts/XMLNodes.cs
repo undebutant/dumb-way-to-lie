@@ -47,6 +47,20 @@ public class Encounter
     [XmlElement("Step")]
     public List<Step> steps;
     public string nextDayEncounter;
+
+    private List<Step>.Enumerator it;
+
+    public List<Step>.Enumerator getEnum()
+    {
+        if (it.Current == null)
+        {
+            it = steps.GetEnumerator();
+            it.MoveNext();
+        }
+        return it;
+    }
+
+
 }
 
 public class Step
@@ -62,6 +76,18 @@ public class Step
 
     [XmlElement("Choice")]
     public List<Choice> choices;
+
+    private List<Choice>.Enumerator it;
+
+    public List<Choice>.Enumerator getEnum()
+    {
+        if (it.Current == null)
+        {
+            it = choices.GetEnumerator();
+            it.MoveNext();
+        }
+        return it;
+    }
 }
 
 public class Choice
