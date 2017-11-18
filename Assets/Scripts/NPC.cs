@@ -27,7 +27,6 @@ public class NPC : Interactible
 
     public override void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("dedans");
         base.OnTriggerEnter2D(collision);
         canMouv = false;
         if(PNJAnimator)
@@ -37,8 +36,7 @@ public class NPC : Interactible
     }
 
     public override void OnTriggerExit2D(Collider2D collision)
-    {
-        Debug.Log("dehors");
+    {;
         base.OnTriggerExit2D(collision);
         canMouv = mayWalk;
         facingRight = false;
