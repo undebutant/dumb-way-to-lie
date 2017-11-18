@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PNJ>
 	<name>Billy</name>
-	<Encounter id="1" posX="0" posY="0">
+	<firstDay>1</firstDay>
+	<Encounter id="1" posX="3" posY="0">
+		<nextDayEncounter>1</nextDayEncounter>
 		<Step idStep="1">
 			<textPNJ>Bonjour, alors ce week-end?</textPNJ>
 			<Choice>
@@ -28,6 +30,7 @@
 		</Step>
 	</Encounter>
 	<Encounter id="2" posX="0" posY="0">
+		<nextDayEncounter>0</nextDayEncounter>
 		<Step idStep="1" requiredEventID="CEO">
 			<textPNJ>Alors, ça se passe comment ta boite?</textPNJ>
 			<Choice>

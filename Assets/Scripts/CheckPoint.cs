@@ -27,7 +27,7 @@ public class CheckPoint : MonoBehaviour {
         //TODO: Render Animation
         isDisplay = true;
         
-        Debug.Log("Checkpoint Activé");
+   
     }
 
     

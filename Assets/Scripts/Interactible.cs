@@ -7,7 +7,7 @@ public abstract class Interactible:MonoBehaviour
     [SerializeField] [Tooltip("Nombre d'intéractions possible avec cet item. (-1 pour illimité)")]
     protected int nbInteraction = 1;
     protected int countInteraction = 0;
-    protected int idEvent;
+    protected string itemName;
     protected bool isDisplay;
     [SerializeField] [Tooltip("Bulle d'interaction à afficher. Doit être positionnée au bon endroit.")]
     protected GameObject balloon;
@@ -25,12 +25,17 @@ public abstract class Interactible:MonoBehaviour
 
     }
 
+    public void setItemName(string it)
+    {
+        this.itemName = it; 
+    }
+
     /// <summary>
     /// This function is called by the player, when he interact with this item. Then, it should either start a dialog or break some stuff.
     /// </summary>
     public virtual void doSomeStuff()
     {
-        this.countInteraction++;
+        this.countInteraction++; //Permet d'éviter au joueur de reparler à un PNJ déjà abordé
         this.hideBalloon();
     }
 
