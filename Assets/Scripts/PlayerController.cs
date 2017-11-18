@@ -26,7 +26,8 @@ public class PlayerController : MonoBehaviour,Interactor {
     Rigidbody2D r;
     Vector3 acceleration;
     private Interactible interactible = null;
-
+    private enum jump {grounded, jump, doubleJump };
+    private jump jumpState=jump.grounded;
 
     public void removeInteractible(Interactible i)
     {
@@ -67,8 +68,24 @@ public class PlayerController : MonoBehaviour,Interactor {
 
         if (InputController.getJump())
         {
-            this.r.AddForce(Vector2.up * jumpHeight);
-            this.r.AddForce(acceleration * inertiaFactor);
+            switch (jumpState)
+            {
+                case jump.grounded:
+                    this.r.AddForce(Vector2.up * jumpHeight);
+                    this.r.AddForce(acceleration * inertiaFactor);
+                    jumpState = jump.jump;
+                    break;
+                case jump.jump:
+                    this.r.AddForce(Vector2.up * jumpHeight);
+                    this.r.AddForce(acceleration * inertiaFactor);
+                    jumpState = jump.doubleJump;
+                    break;
+                case jump.doubleJump:
+                    break;
+
+
+            }
+            
             //this.r.velocity = acceleration * inertiaFactor;
         }
 
@@ -96,5 +113,10 @@ public class PlayerController : MonoBehaviour,Interactor {
         {
             Player.die();
         }
+    }
+
+    public Vector3 getAcceleration()
+    {
+        return this.acceleration;
     }
 }
