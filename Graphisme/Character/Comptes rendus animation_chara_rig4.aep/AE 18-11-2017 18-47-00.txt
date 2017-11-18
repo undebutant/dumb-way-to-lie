@@ -1,0 +1,12 @@
+Adobe After Effects v14.0 Windows 64 - Compte rendu du projet animation_chara_rig4.aep
+
+Début du rendu le 18/11/2017 à 18:47:00
+
+  18/11/2017 18:47:00 : début de la composition interact_rendu.
+
+  Destin. : C:\Users\noemi\Documents\dumb-way-to-lie\Graphisme\Character\Export\Interact\interact_[#####].png    18/11/2017 18:47:11 : fin de la composition interact_rendu.
+
+
+  Temps total écoulé : 11 Secondes
+Compte-rendu terminé le 18/11/2017 à 18:47:11
+

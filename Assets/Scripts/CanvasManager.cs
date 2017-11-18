@@ -37,7 +37,7 @@ public class CanvasManager : MonoBehaviour
 
     }
 
-    public static void displayChoice(int idEvent)
+    public static void displayChoice(string name)
     {
         if(instance.choiceCanvas != null)
         {

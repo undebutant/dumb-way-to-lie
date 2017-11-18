@@ -43,10 +43,9 @@ public class Paralaxe : MonoBehaviour {
 	void LateUpdate ()
     {
         accelerationPlayer =playerControlScript.getAcceleration();
-        Debug.Log(accelerationPlayer);
-        accelerationLayer.x = accelerationPlayer.x * (1-depthOffSet);
+        accelerationLayer.x = accelerationPlayer.x *depthOffSet;
         //TODO : mettre une limite inf pour éviter le scrolling vers la gauche ?
-        this.transform.Translate(-accelerationLayer);
+        this.transform.Translate(accelerationLayer);
     }
 
 }

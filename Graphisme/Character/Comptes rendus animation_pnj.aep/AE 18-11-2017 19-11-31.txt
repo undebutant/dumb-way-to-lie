@@ -1,0 +1,12 @@
+Adobe After Effects v14.0 Windows 64 - Compte rendu du projet animation_pnj.aep
+
+Début du rendu le 18/11/2017 à 19:11:31
+
+  18/11/2017 19:11:31 : début de la composition walk_rendu.
+
+  Destin. : C:\Users\noemi\Documents\dumb-way-to-lie\Graphisme\Character\Export\Pnj\pnj_[#####].png    18/11/2017 19:11:48 : fin de la composition walk_rendu.
+
+
+  Temps total écoulé : 17 Secondes
+Compte-rendu terminé le 18/11/2017 à 19:11:48
+

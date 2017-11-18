@@ -7,15 +7,17 @@ public class NPC : Interactible {
     public override void doSomeStuff()
     {
         base.doSomeStuff();
-        CanvasManager.displayChoice(this.idEvent);
+        CanvasManager.displayChoice(this.itemName);
         SideScrolling.ChangeTarget(this.gameObject);
-        SideScrolling.zoomOnTarget();
+        SideScrolling.zoomOnTarget(); //TODO Offset
 
     }
 
     // Use this for initialization
-    void Start () {
-	}
+    void Start ()
+    {
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
