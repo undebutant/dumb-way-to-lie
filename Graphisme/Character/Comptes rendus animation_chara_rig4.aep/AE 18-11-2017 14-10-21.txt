@@ -1,0 +1,12 @@
+Adobe After Effects v14.0 Windows 64 - Compte rendu du projet animation_chara_rig4.aep
+
+Début du rendu le 18/11/2017 à 14:10:21
+
+  18/11/2017 14:10:21 : début de la composition chara_idle.
+
+  Destin. : C:\Users\noemi\Documents\dumb-way-to-lie\Graphisme\Character\Export\Idle\idle_[#####].png    18/11/2017 14:10:47 : fin de la composition chara_idle.
+
+
+  Temps total écoulé : 26 Secondes
+Compte-rendu terminé le 18/11/2017 à 14:10:47
+
