@@ -30,20 +30,34 @@ public class PlayerController : MonoBehaviour,Interactor {
     private jump jumpState=jump.grounded;
 
     #region playerAnimation
+    private Animator playerAnimator;
     private SpriteRenderer spRender;
     private bool facingRigh = true;
     private bool oldDirection = true;
+    private bool jumping = false;
+    private Vector3 SpeedY; // Speed (ancienY, nouvelY, vitesseY)
     #endregion
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         jumpState = jump.grounded;
+        jumping = false;
+        SpeedY= Vector3.zero;
+        if (playerAnimator)
+        {
+            playerAnimator.SetBool("Jumping", false);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         jumpState = jump.jump;
+        jumping = true;
+        if (playerAnimator)
+        {
+            playerAnimator.SetBool("Jumping", true);
+        }   
     }
 
     public void removeInteractible(Interactible i)
@@ -67,6 +81,8 @@ public class PlayerController : MonoBehaviour,Interactor {
         acceleration = Vector3.zero;
         r = this.GetComponent<Rigidbody2D>();
         spRender = this.GetComponent<SpriteRenderer>();
+        playerAnimator = this.GetComponent<Animator>();
+        SpeedY = Vector3.zero;
 	}
 	
 	// Update is called once per frame
@@ -92,6 +108,12 @@ public class PlayerController : MonoBehaviour,Interactor {
                     this.r.AddForce(Vector2.up * jumpHeight);
                     this.r.AddForce(acceleration * inertiaFactor);
                     jumpState = jump.jump;
+                    if (playerAnimator)
+                    {
+                        playerAnimator.SetBool("Jumping", true);
+                    }
+                    jumping = true;
+                    SpeedY.x = this.transform.position.x;
                     break;
                 case jump.jump:
                     this.r.AddForce(Vector2.up * jumpHeight);
@@ -117,7 +139,17 @@ public class PlayerController : MonoBehaviour,Interactor {
         }
         */
         acceleration.x = InputController.getXAxis() * playerSpeedFactor*Time.deltaTime*accelerationFactor;
-
+        if (playerAnimator)
+        {
+            playerAnimator.SetFloat("Speed", Mathf.Abs(10 * acceleration.x));
+            if (jumping)
+            {
+                SpeedY.y = SpeedY.x; //new devient old
+                SpeedY.x = this.transform.position.y; //enregistrer la position actuelle
+                SpeedY.z = SpeedY.y - SpeedY.x;
+                playerAnimator.SetFloat("SpeedJump", SpeedY.z);
+            }
+        }
         if (acceleration.x>0.001)
         {
             facingRigh = true;
