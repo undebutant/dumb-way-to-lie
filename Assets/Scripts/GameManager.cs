@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -56,6 +57,38 @@ public class GameManager : MonoBehaviour {
             }
             
         }
+    }
+
+    public static Step getNextValidStep(string name)
+    {
+        PNJ p = npcs[name];
+        List<Step>.Enumerator it = p.getEnum().Current.getEnum();
+        do
+        {
+            if (it.Current.requiredEventID != null)
+            {
+                if (true)//CHECK
+                {
+                    return it.Current;
+                }
+              
+            }
+            if (it.Current.incompatibleEventID != null)
+            {
+                if (true)//CHECK !Incompatible
+                {
+                    return it.Current;
+                }
+            }
+            if(it.Current.incompatibleEventID == it.Current.requiredEventID)
+            {
+                return it.Current;
+            }
+
+        } while (it.MoveNext());
+
+        return null;
+
     }
 
     void instantiateAllPNJ()
