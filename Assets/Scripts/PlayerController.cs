@@ -29,13 +29,19 @@ public class PlayerController : MonoBehaviour,Interactor {
     private enum jump {grounded, jump, doubleJump };
     private jump jumpState=jump.grounded;
 
+    #region playerAnimation
+    private SpriteRenderer spRender;
+    private bool facingRigh = true;
+    private bool oldDirection = true;
+    #endregion
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         jumpState = jump.grounded;
     }
 
-    private void OnCollisionExit2D(Collision collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         jumpState = jump.jump;
     }
@@ -60,6 +66,7 @@ public class PlayerController : MonoBehaviour,Interactor {
     void Start () {
         acceleration = Vector3.zero;
         r = this.GetComponent<Rigidbody2D>();
+        spRender = this.GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -110,6 +117,28 @@ public class PlayerController : MonoBehaviour,Interactor {
         }
         */
         acceleration.x = InputController.getXAxis() * playerSpeedFactor*Time.deltaTime*accelerationFactor;
+
+        if (acceleration.x>0.001)
+        {
+            facingRigh = true;
+            if (!oldDirection)
+            {
+                spRender.flipX = false;
+                oldDirection = facingRigh;
+            }
+            
+        }
+
+        if (acceleration.x<-0.001)
+        {
+            facingRigh = false;
+            if (oldDirection)
+            {
+                spRender.flipX = true;
+                oldDirection = facingRigh;
+            }
+        }
+
         this.transform.Translate(acceleration);
 
         if(interactible != null && InputController.getInteractionButton())
