@@ -1,0 +1,22 @@
+Adobe After Effects v14.0 Windows 64 - Compte rendu du projet animation_chara_rig4.aep
+
+Début du rendu le 18/11/2017 à 18:20:55
+
+  18/11/2017 18:20:55 : début de la composition jump1_rendu.
+
+  Destin. : C:\Users\noemi\Documents\dumb-way-to-lie\Graphisme\Character\Export\Jump1\jump1_[#####].png    18/11/2017 18:21:15 : fin de la composition jump1_rendu.
+
+
+  18/11/2017 18:21:15 : début de la composition jump2_rendu.
+
+  Destin. : C:\Users\noemi\Documents\dumb-way-to-lie\Graphisme\Character\Export\Jump2\jump2_[#####].png    18/11/2017 18:21:39 : fin de la composition jump2_rendu.
+
+
+  18/11/2017 18:21:39 : début de la composition jump3_rendu.
+
+  Destin. : C:\Users\noemi\Documents\dumb-way-to-lie\Graphisme\Character\Export\Jump3\jump3_[#####].png    18/11/2017 18:21:49 : fin de la composition jump3_rendu.
+
+
+  Temps total écoulé : 54 Secondes
+Compte-rendu terminé le 18/11/2017 à 18:21:49
+
