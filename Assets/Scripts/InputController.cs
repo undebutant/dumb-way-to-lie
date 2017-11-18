@@ -34,9 +34,14 @@ public class InputController : MonoBehaviour {
         return Input.GetButtonUp("Fire1");
     }
 
-    static public bool getSprintButton()
+    static public bool getSprintButtonDown()
     {
-        return Input.GetButton("Fire2");
+        return Input.GetButtonDown("Fire2");
+    }
+
+    static public bool getSprintButtonUp()
+    {
+        return Input.GetButtonUp("Fire2");
     }
 
     static public bool getJump()

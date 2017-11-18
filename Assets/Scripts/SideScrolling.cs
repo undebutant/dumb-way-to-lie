@@ -18,10 +18,23 @@ public class SideScrolling : MonoBehaviour {
     [Tooltip("Temps pour changer de focus")]
     float time = 2;
 
+
+
+
+    [SerializeField]
+    float defaultFOV = 5f;
+
+    [SerializeField]
+    float zoomFOV = 2.5f;
+
+
+
+
     [SerializeField]
     bool test = false;
 
     private static bool isLerping = false;
+    private static bool isZooming = false;
     private static Vector3 tmp;
 
     private void Awake()
@@ -53,13 +66,22 @@ public class SideScrolling : MonoBehaviour {
             this.transform.position = tmp;
         }
 
+        //TODO: Hum... C'est pas très charlie.
         if (test)
         {
             FocusOnPlayer();
+            zoomOnTarget();
             test = !test;
         }
         
 	}
+
+    public void zoomOnTarget()
+    {
+        StartCoroutine(zoom());
+        //StartCoroutine("changeFocus", player);
+    }
+
 
     public void FocusOnPlayer()
     {
@@ -91,6 +113,26 @@ public class SideScrolling : MonoBehaviour {
         
         isLerping = false;
         
+    }
+
+    IEnumerator zoom()
+    {
+        Camera c = this.GetComponent<Camera>();
+        isZooming = true;
+        bool b = (c.orthographicSize < defaultFOV);
+        float t = 0;
+        while (t < time)
+        {
+            c.orthographicSize = (b)
+                ?Mathf.Lerp(zoomFOV,defaultFOV, t / time)
+                :Mathf.Lerp(defaultFOV, zoomFOV, t / time);
+
+            t += Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        isZooming = false;
+
     }
 
 }
