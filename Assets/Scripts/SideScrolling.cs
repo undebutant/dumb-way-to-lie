@@ -29,13 +29,12 @@ public class SideScrolling : MonoBehaviour {
 
 
 
-
-    [SerializeField]
-    bool test = false;
-
     private static bool isLerping = false;
     private static bool isZooming = false;
     private static Vector3 tmp;
+
+
+
 
     private void Awake()
     {
@@ -50,6 +49,10 @@ public class SideScrolling : MonoBehaviour {
     }
 
 
+    public static float getZoomDuration()
+    {
+        return instance.time;
+    }
 
     // Use this for initialization
     void Start () {
@@ -65,48 +68,40 @@ public class SideScrolling : MonoBehaviour {
             tmp.x = target.transform.position.x;
             this.transform.position = tmp;
         }
-
-        //TODO: Hum... C'est pas très charlie.
-        if (test)
-        {
-            FocusOnPlayer();
-            zoomOnTarget();
-            test = !test;
-        }
         
 	}
 
-    public void zoomOnTarget()
+    public static void zoomOnTarget()
     {
-        StartCoroutine(zoom());
+        instance.StartCoroutine(zoom());
+        
+        //StartCoroutine("changeFocus", player);
+    }
+
+    public static void FocusOnPlayer()
+    {
+        instance.StartCoroutine(changeFocus(instance.player));
         //StartCoroutine("changeFocus", player);
     }
 
 
-    public void FocusOnPlayer()
+    public static void ChangeTarget(GameObject g)
     {
-        StartCoroutine(changeFocus(player));
-        //StartCoroutine("changeFocus", player);
+        instance.StartCoroutine(changeFocus(g));
     }
 
-
-    public void ChangeTarget(GameObject g)
+    static IEnumerator changeFocus(GameObject newTarget)
     {
-        StartCoroutine(changeFocus(g));
-    }
-
-    IEnumerator changeFocus(GameObject newTarget)
-    {
-        Vector3 temp = this.transform.position;
-        Vector3 tmpPos = target.transform.position;
-        target = newTarget;
+        Vector3 temp = instance.transform.position;
+        Vector3 tmpPos = instance.target.transform.position;
+        instance.target = newTarget;
         isLerping = true;
         float t = 0;
-        while (t < time)
+        while (t < instance.time)
         {
-            temp.x = Mathf.Lerp(tmpPos.x, newTarget.transform.position.x, t / time);
-            temp.y = Mathf.Lerp(tmpPos.y, newTarget.transform.position.y, t / time);
-            this.transform.position = temp;
+            temp.x = Mathf.Lerp(tmpPos.x, newTarget.transform.position.x, t / instance.time);
+            temp.y = Mathf.Lerp(tmpPos.y, newTarget.transform.position.y, t / instance.time);
+            instance.transform.position = temp;
             t += Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
@@ -115,17 +110,17 @@ public class SideScrolling : MonoBehaviour {
         
     }
 
-    IEnumerator zoom()
+    static IEnumerator zoom()
     {
-        Camera c = this.GetComponent<Camera>();
+        Camera c = instance.GetComponent<Camera>();
         isZooming = true;
-        bool b = (c.orthographicSize < defaultFOV);
+        bool b = (c.orthographicSize < instance.defaultFOV);
         float t = 0;
-        while (t < time)
+        while (t < instance.time)
         {
             c.orthographicSize = (b)
-                ?Mathf.Lerp(zoomFOV,defaultFOV, t / time)
-                :Mathf.Lerp(defaultFOV, zoomFOV, t / time);
+                ?Mathf.Lerp(instance.zoomFOV, instance.defaultFOV, t / instance.time)
+                :Mathf.Lerp(instance.defaultFOV, instance.zoomFOV, t / instance.time);
 
             t += Time.deltaTime;
             yield return new WaitForFixedUpdate();

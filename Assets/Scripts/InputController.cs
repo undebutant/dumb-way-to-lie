@@ -21,7 +21,6 @@ public class InputController : MonoBehaviour {
     static public float getXAxis()
     {
         return Input.GetAxis("Horizontal");
-
     }
 
     static public float getYAxis()
