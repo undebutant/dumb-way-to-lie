@@ -39,7 +39,7 @@ public abstract class Interactible:MonoBehaviour
         this.hideBalloon();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player" && !isDisplay && (countInteraction < nbInteraction || nbInteraction < 0))
         {
@@ -54,7 +54,7 @@ public abstract class Interactible:MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player" && isDisplay)
         {
