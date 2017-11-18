@@ -29,6 +29,17 @@ public class PlayerController : MonoBehaviour,Interactor {
     private enum jump {grounded, jump, doubleJump };
     private jump jumpState=jump.grounded;
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        jumpState = jump.grounded;
+    }
+
+    private void OnCollisionExit2D(Collision collision)
+    {
+        jumpState = jump.jump;
+    }
+
     public void removeInteractible(Interactible i)
     {
         if (this.interactible == i)
@@ -82,8 +93,6 @@ public class PlayerController : MonoBehaviour,Interactor {
                     break;
                 case jump.doubleJump:
                     break;
-
-
             }
             
             //this.r.velocity = acceleration * inertiaFactor;
