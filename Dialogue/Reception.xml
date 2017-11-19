@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PNJ>
+	<name>Reception</name>
+	<firstDay>1</firstDay>
+	<Encounter id="1" posX="3" posY="0">
+		<nextDayEncounter>1</nextDayEncounter>
+		<Step idStep="1">
+			<textPNJ>Ca n'a pas l'air d'aller Jean, quelque chose vous tracasse?</textPNJ>
+			<Choice>
+				<textButton>Rien</textButton>
+				<textDisplay>Tout va bien... Bonne soirée Élizabeth...</textDisplay>
+				<response>Oh... D'accord... Bonne soirée.</response>
+			</Choice>
+			<Choice>
+				<textButton>Demande rendez-vous</textButton>
+				<textDisplay>*...T'es vraiment dingue, jamais elle accepterait...*  Mon chien s'est encore enfui, je dois me dépecher, à demain !</textDisplay>
+			</Choice>
+		</Step>
+	</Encounter>
+	<Encounter id="2" posX="0" posY="0">
+		<nextDayEncounter>1</nextDayEncounter>
+		<Step idStep="1">
+			<textPNJ>Bonsoir, Jean! Oh d'ailleurs, vous avez entendu parler du nouveau groupe tendance en ce moment, les Sex Bob-Ombs?</textPNJ>
+			<Choice>
+				<textButton>Groupe préféré</textButton>
+				<textDisplay>Bien sûr, c'est un de mes groupes favoris!</textDisplay>
+			</Choice>
+			<Choice>
+				<textButton>Tous les albums</textButton>
+				<textDisplay>Evidemment, j'ai tous leurs albums !</textDisplay>
+			</Choice>
+		</Step>
+		<Step idStep="2">
+			<textPNJ>Vraiment? Je ne l'aurais jamais pensée, je suis une énorme fan aussi! Qui l'aurait cru?</textPNJ>
+			<Choice>
+				<textButton>Destin</textButton>
+				<textDisplay>Ce doit être un signe du destin ! Je vous dit à demain Élizabeth.</textDisplay>
+			</Choice>
+			<Choice>
+				<textButton>Fuite</textButton>
+				<textDisplay>Il faut que j'aille arroser mon cactus, à demain Élizabeth.</textDisplay>
+			</Choice>
+		</Step>
+	</Encounter>
+	<Encounter id="3" posX="0" posY="0">
+		<nextDayEncounter>0</nextDayEncounter>
+		<Step idStep="1">
+			<textPNJ>Bonsoir, Jean ! Je ne sais pas si vous êtes au courant, mais mon groupe préféré passe dans notre ville dans pas très longtemps...</textPNJ>
+			<Choice>
+				<textButton>Sex Bomb-Obs</textButton>
+				<textDisplay>Les Sex Bomb-Obs, c'est ça?</textDisplay>
+				<response>...dommage, je pensais que nous avions ça en commun...mais vous ne vous souvenez même plus de leur nom...</response>
+			</Choice>
+			<Choice>
+				<textButton>Sex Bob-Ombs</textButton>
+				<textDisplay>Les Sex Bob-Ombs?</textDisplay>
+				<eventID>SBO</eventID>
+			</Choice>
+		</Step>
+		<Step idStep="2" requiredEventID="SBO">
+			<textPNJ>Rien ne vous y oblige, bien sûr, mais j'ai deux places, et personne n'est interessé...</textPNJ>
+			<Choice>
+				<textButton>Accepter</textButton>
+				<textDisplay>Je vous y accompagnerais avec grand plaisir, Élizabeth.</textDisplay>
+				<response>Hourra!!! Je vous dis donc à demain.</response>
+			</Choice>
+			<Choice>
+				<textButton>Refuser</textButton>
+				<textDisplay>Je suis désolé mais ça ne m'interesse pas trop...à demain Élizabeth.</textDisplay>
+			</Choice>
+		</Step>
+	</Encounter>
+</PNJ>

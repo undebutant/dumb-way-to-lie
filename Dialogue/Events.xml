@@ -3,4 +3,5 @@
 	<event>GameOver</event>
 	<event>Chat</event>
 	<event>Blesse</event>
+	<event>SBO</event>
 </Events>
