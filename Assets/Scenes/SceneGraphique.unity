@@ -277,6 +277,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceCanvas: {fileID: 1577894151}
   time: 2
+  firstChoice: {fileID: 0}
+  secondChoice: {fileID: 0}
+  timePopBubble: 0.5
 --- !u!1 &432237190
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,12 +643,12 @@ Prefab:
     - target: {fileID: 224089056637347294, guid: 676fc3b54975c834e82bda07ef7a5014,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 153.95
       objectReference: {fileID: 0}
     - target: {fileID: 224089056637347294, guid: 676fc3b54975c834e82bda07ef7a5014,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 80.6
       objectReference: {fileID: 0}
     - target: {fileID: 224089056637347294, guid: 676fc3b54975c834e82bda07ef7a5014,
         type: 2}
@@ -749,7 +752,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1091727381200938, guid: 676fc3b54975c834e82bda07ef7a5014, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 676fc3b54975c834e82bda07ef7a5014, type: 2}
@@ -971,21 +974,6 @@ Prefab:
     - target: {fileID: 4581541401546562, guid: 04e858eb9a3ffb24ea674738568f119a, type: 2}
       propertyPath: m_RootOrder
       value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 212593271847450874, guid: 04e858eb9a3ffb24ea674738568f119a,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 0.678
-      objectReference: {fileID: 0}
-    - target: {fileID: 212593271847450874, guid: 04e858eb9a3ffb24ea674738568f119a,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0.041089937
-      objectReference: {fileID: 0}
-    - target: {fileID: 212593271847450874, guid: 04e858eb9a3ffb24ea674738568f119a,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0.6340752
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04e858eb9a3ffb24ea674738568f119a, type: 2}
