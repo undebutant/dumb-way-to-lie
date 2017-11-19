@@ -85,13 +85,11 @@ public class GameManager : MonoBehaviour {
 
             if (s.incompatibleEventID == s.requiredEventID)
             {
-                Debug.Log("CONNARD");
                 return s;
             }
             s = e.getCurrentStep();
             
         } 
-        Debug.Log("Very Sad");
         return null;
 
     }

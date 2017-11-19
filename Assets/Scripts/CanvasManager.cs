@@ -34,7 +34,7 @@ public class CanvasManager : MonoBehaviour
 
 
     [SerializeField]
-    float timePopBubble = 0.5f;
+    float timePopBubble = 1f;
 
     GameObject upBubble;
     GameObject bottomBubble;
@@ -67,15 +67,12 @@ public class CanvasManager : MonoBehaviour
 
     public static void displayChoice(string name)
     {
-        Debug.Log("Display");
         if(instance.choiceCanvas != null)
         {
             instance.choiceCanvas.gameObject.SetActive(true);
             instance.StartCoroutine(fadeIn(instance.choiceCanvas.GetComponent<CanvasGroup>()));
             instance.currentName = name;
             continueConversation(name);
-
-
         }
     }
 
@@ -84,11 +81,10 @@ public class CanvasManager : MonoBehaviour
         instance.isListeningPnj = true;
        
         instance.currentStep = GameManager.getNextValidStep(name);
-        Debug.Log(instance.currentStep);
 
         string textValue = (instance.currentStep != null)
             ? instance.currentStep.textPNJ
-            : "J'en ai fini avec vous.";
+            : "Vous avez fini? Je peux y aller?";
         GameObject panel;
 
         if (instance.upBubble == null)
@@ -96,6 +92,7 @@ public class CanvasManager : MonoBehaviour
             panel = SpeechFactory.getUpPNJPanel();
             instance.upBubble = Instantiate<GameObject>(panel, instance.choiceCanvas.transform);
             instance.upBubble.GetComponentInChildren<UnityEngine.UI.Text>().text = textValue;
+            instance.upBubble.SetActive(true);
             UnityEngine.UI.Text t = instance.upBubble.GetComponentInChildren<UnityEngine.UI.Text>();
             t.text = textValue;
         }
@@ -104,6 +101,7 @@ public class CanvasManager : MonoBehaviour
 
             instance.bottomBubble = Instantiate<GameObject>(SpeechFactory.getDownPNJPanel(), instance.choiceCanvas.transform);
             UnityEngine.UI.Text t = instance.bottomBubble.GetComponentInChildren<UnityEngine.UI.Text>();
+            instance.bottomBubble.SetActive(true);
             t.text = textValue;
             //instance.bottomBubble.GetComponent<UnityEngine.UI.Text>().text = textValue;
         }
@@ -132,7 +130,7 @@ public class CanvasManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("COUCOU");
+
             instance.firstChoice.text = "Partir.";
             instance.secondChoice.text = "Partir, vraiment.";
             instance.c2 = null;
@@ -218,6 +216,9 @@ public class CanvasManager : MonoBehaviour
             {
                 Destroy(g);
             }
+
+            SideScrolling.FocusOnPlayer();
+            SideScrolling.zoomOnTarget();
         }
     }
 
