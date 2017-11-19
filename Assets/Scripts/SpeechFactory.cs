@@ -36,10 +36,10 @@ public class SpeechFactory : MonoBehaviour
         DownPanelPlayer = new Queue<GameObject>();
         DownPanelPnj = new Queue<GameObject>();
 
-        upSamplePanelPlayer = Resources.Load<GameObject>("PanelPlayer");
-        upSamplePanelPNJ = Resources.Load<GameObject>("PanelPNJ");
-        downSamplePanelPlayer = Resources.Load<GameObject>("PanelPlayer");
-        downSamplePanelPNJ = Resources.Load<GameObject>("PanelPNJ");
+        upSamplePanelPlayer = Resources.Load<GameObject>("upPanelPlayer");
+        upSamplePanelPNJ = Resources.Load<GameObject>("upPanelPNJ");
+        downSamplePanelPlayer = Resources.Load<GameObject>("downPanelPlayer");
+        downSamplePanelPNJ = Resources.Load<GameObject>("downPanelPNJ");
 
     }
 
@@ -65,6 +65,7 @@ public class SpeechFactory : MonoBehaviour
     {
         if (instance.UpPanelPnj.Count == 0)
         {
+            
             return (instance.upSamplePanelPNJ);
         }
         else

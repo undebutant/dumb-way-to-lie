@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
                 pnj = Resources.Load<NPC>(p.Value.name);
                 pnj = Instantiate(pnj);
                 pnj.setItemName(p.Key);
-                e = p.Value.getEnum().Current;
+                e = p.Value.getCurrentEncounter();//getEnum().Current;
                 pnj.transform.position = new Vector2(float.Parse(e.posX),float.Parse(e.posY));
                 //Debug.Log("JAMBON");
             }
@@ -61,32 +61,37 @@ public class GameManager : MonoBehaviour {
 
     public static Step getNextValidStep(string name)
     {
-        PNJ p = npcs[name];
-        List<Step>.Enumerator it = p.getEnum().Current.getEnum();
-        do
+        PNJ p = GameManager.npcs[name];
+        Encounter e = p.getCurrentEncounter();
+        Step s = e.getCurrentStep();
+        while (s!= null)
         {
-            if (it.Current.requiredEventID != null)
+            e.incrementStep();           
+            if (s.requiredEventID != null)
             {
                 if (true)//CHECK
                 {
-                    return it.Current;
+                    return s;
                 }
               
             }
-            if (it.Current.incompatibleEventID != null)
+            if (s.incompatibleEventID != null)
             {
                 if (true)//CHECK !Incompatible
                 {
-                    return it.Current;
+                    return s;
                 }
             }
-            if(it.Current.incompatibleEventID == it.Current.requiredEventID)
+
+            if (s.incompatibleEventID == s.requiredEventID)
             {
-                return it.Current;
+                Debug.Log("CONNARD");
+                return s;
             }
-
-        } while (it.MoveNext());
-
+            s = e.getCurrentStep();
+            
+        } 
+        Debug.Log("Very Sad");
         return null;
 
     }
@@ -125,4 +130,12 @@ public class GameManager : MonoBehaviour {
     void Update () {
 		
 	}
+
+    public static void nextEncounter(string name)
+    {
+        if(npcs[name] != null)
+        {
+            npcs[name].incrementEncounter();//getEnum().MoveNext(); //TODO Peutêtrebuggé
+        }
+    }
 }

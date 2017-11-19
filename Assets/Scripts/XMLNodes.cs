@@ -18,17 +18,23 @@ public class PNJ
     public List<Encounter> encounters;
 
 
-    private List<Encounter>.Enumerator it;
+    private int currentId =0;
 
-    public List<Encounter>.Enumerator getEnum()
+    public void incrementEncounter() { currentId++; }
+
+
+    public Encounter getCurrentEncounter()
     {
-        if(it.Current == null)
+        int i = 0;
+        foreach (Encounter e in encounters)
         {
-            it = encounters.GetEnumerator();
-            it.MoveNext();
+            if (i == currentId)
+                return e;
+            i++;
         }
-        return it;
+        return null;
     }
+    
 
     public bool isLoaded = false;
 
@@ -48,16 +54,21 @@ public class Encounter
     public List<Step> steps;
     public string nextDayEncounter;
 
-    private List<Step>.Enumerator it;
+    private int currentId = 0;
 
-    public List<Step>.Enumerator getEnum()
+    public void incrementStep() { currentId++; }
+
+
+    public Step getCurrentStep()
     {
-        if (it.Current == null)
+        int i = 0;
+        foreach (Step s in steps)
         {
-            it = steps.GetEnumerator();
-            it.MoveNext();
+            if (i == currentId)
+                return s;
+            i++;
         }
-        return it;
+        return null;
     }
 
 
@@ -65,7 +76,7 @@ public class Encounter
 
 public class Step
 {
-    Step(){ choices = new List<Choice>();}
+    Step() { choices = new List<Choice>(); }
     [XmlAttribute("idStep")]
     public string idStep;
     [XmlAttribute("requiredEventID")]
@@ -77,16 +88,21 @@ public class Step
     [XmlElement("Choice")]
     public List<Choice> choices;
 
-    private List<Choice>.Enumerator it;
+    private int currentId = 0;
 
-    public List<Choice>.Enumerator getEnum()
+    public void incrementChoice() { currentId++; }
+
+
+    public Choice getCurrentChoice()
     {
-        if (it.Current == null)
+        int i = 0;
+        foreach (Choice c in choices)
         {
-            it = choices.GetEnumerator();
-            it.MoveNext();
+            if (i == currentId)
+                return c;
+            i++;
         }
-        return it;
+        return null;
     }
 }
 

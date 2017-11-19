@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Interactible:MonoBehaviour
 {
     [SerializeField] [Tooltip("Nombre d'intéractions possible avec cet item. (-1 pour illimité)")]
-    protected int nbInteraction = 1;
+    protected int nbInteraction = 3;
     protected int countInteraction = 0;
     protected string itemName;
     protected bool isDisplay;
