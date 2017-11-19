@@ -113,3 +113,9 @@ public class Choice
     public string response;
     public string eventID;
 }
+
+public class Events
+{
+    [XmlElement("event")]
+    public List<string> events;
+}

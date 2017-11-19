@@ -14,6 +14,7 @@
 				<textButton>Chez mamy</textButton>
 				<textDisplay>Chez... Demande à ta mère!</textDisplay>
 				<eventID>GameOver</eventID>
+        <response>FILS DE PUTE!</response>
 			</Choice>
 		</Step>
 		<Step idStep="2">
