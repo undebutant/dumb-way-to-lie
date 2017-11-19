@@ -50,6 +50,7 @@
 				<textButton>Sex Bomb-Obs</textButton>
 				<textDisplay>Les Sex Bomb-Obs, c'est ça?</textDisplay>
 				<response>...dommage, je pensais que nous avions ça en commun...mais vous ne vous souvenez même plus de leur nom...</response>
+				<eventID>GameOver</eventID>
 			</Choice>
 			<Choice>
 				<textButton>Sex Bob-Ombs</textButton>

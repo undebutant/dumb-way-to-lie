@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PNJ>
+	<name>Barman</name>
+	<firstDay>2</firstDay>
+	<Encounter id="1" posX="3" posY="0">
+		<nextDayEncounter>1</nextDayEncounter>
+		<Step idStep="1">
+			<textPNJ>Bonsoir Jean, une pinte comme d'habitude?</textPNJ>
+			<Choice>
+				<textButton>Une pinte</textButton>
+				<textDisplay>Comme d'habitude.</textDisplay>
+			</Choice>
+			<Choice>
+				<textButton>Un Appletini</textButton>
+				<textDisplay>Je prendrais plutôt un Appletini, aujourd'hui.</textDisplay>
+			</Choice>
+		</Step>
+		<Step idStep="2">
+			<textPNJ>Dis-moi, tu as appris pour Bertrand ? Il vient d'avoir une énorme promotion.</textPNJ>
+			<Choice>
+				<textButton>Pistonnage</textButton>
+				<textDisplay>D'après les rumeurs, il l'aurait eu en utilisant des contacts avec le bras long. Il ne la mérite pas.</textDisplay>
+				<response>Tiens ? Tu m'apprends quelque chose.</response>
+			</Choice>
+			<Choice>
+				<textButton>Moi aussi</textButton>
+				<textDisplay>Moi aussi j'ai eu une promotion ! Tu as en face de toi le nouveau Assistant collaborateur de l'entreprise.</textDisplay>
+				<eventID>CEO</eventID>
+			</Choice>
+		</Step>
+		<Step idStep="3">
+			<textPNJ>Bon, j'arrive avec ta boisson.</textPNJ>
+			<Choice>
+				<textButton>Oublie</textButton>
+				<textDisplay>Au final oublie ce verre, Il commence à se faire tard.</textDisplay>
+				<response>Comme tu voudras. Bonne soirée Jean.</response>
+			</Choice>
+			<Choice>
+				<textButton>Fatigue</textButton>
+				<textDisplay>Au final oublie ce verre, Il commence à se faire tard.</textDisplay>
+				<response>Comme tu voudras. Bonne soirée Jean.</response>
+			</Choice>
+		</Step>
+	</Encounter>
+	<Encounter id="2" posX="0" posY="0">
+		<nextDayEncounter>0</nextDayEncounter>
+		<Step idStep="1">
+			<textPNJ>Tiens, te revoilà ! Tu es arrivé tôt aujourd'hui, ce serait pour me rembourser tout les verres que tu me dois?</textPNJ>
+			<Choice>
+				<textButton>Pas assez d'argent</textButton>
+				<textDisplay>Tu sais bien que je te rembourserais un jour...juste...mon frère m'a récemment emprunté de l'argent pour son opération à coeur ouvert.</textDisplay>
+				<response>Et toi tu sais très bien que j'arrive à détecter tes mensonges ! Du moins la plupart... </response>
+			</Choice>
+			<Choice>
+				<textButton>Plus de réseau</textButton>
+				<textDisplay>Euh...il faut que j'y aille...je passe dans un tunnel ça capte mal...PSSHHSHUSQIHPZ</textDisplay>
+				<response>Tu sais que cette technique ne marche qu'au téléphone...</response>
+			</Choice>
+		</Step>
+		<Step idStep="2">
+			<textPNJ>Allez, qu'est ce que je te sers?</textPNJ>
+			<Choice>
+				<textButton>Une pinte</textButton>
+				<textDisplay>Comme d'habitude, une bonne pinte de bière.</textDisplay>
+				<response>On n'en a plus du tout, désolé...si on arrêtait de faire des crédits...</response>
+			</Choice>
+			<Choice>
+				<textButton>Rien</textButton>
+				<textDisplay>Ca ira, merci. J'ai de la route à faire et la journée m'a fatiguée.</textDisplay>
+			</Choice>
+		</Step>
+	</Encounter>
+</PNJ>
