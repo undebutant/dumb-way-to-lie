@@ -20,7 +20,7 @@ public class NPC : Interactible
     {
         base.doSomeStuff();
         CanvasManager.displayChoice(this.itemName);
-        SideScrolling.ChangeTarget(this.gameObject);
+        SideScrolling.ChangeTarget(SideScrolling.instance.emptyTarget); //Do an offset to the left
         SideScrolling.zoomOnTarget(); //TODO Offset
 
     }

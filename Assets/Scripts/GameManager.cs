@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     [Tooltip("Chemin d'accès des .xml des personnages non joueurs ")]
     private string EventPath = "./Assets/XML/Events/";
-    private static Dictionary<string, bool> events;
+    private static Dictionary<string, bool> eventsStatus;
 
     private static int day = 0;
     
@@ -31,7 +31,9 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         npcs = new Dictionary<string, PNJ>();
+        eventsStatus = new Dictionary<string, bool>();
         initializePNJ();
+        initializeEvent();
         incrementDay();    
     }
 	
@@ -51,42 +53,48 @@ public class GameManager : MonoBehaviour {
                 pnj = Resources.Load<NPC>(p.Value.name);
                 pnj = Instantiate(pnj);
                 pnj.setItemName(p.Key);
-                e = p.Value.getEnum().Current;
+                e = p.Value.getCurrentEncounter();//getEnum().Current;
                 pnj.transform.position = new Vector2(float.Parse(e.posX),float.Parse(e.posY));
-                //Debug.Log("JAMBON");
             }
-            
         }
     }
 
     public static Step getNextValidStep(string name)
     {
-        PNJ p = npcs[name];
-        List<Step>.Enumerator it = p.getEnum().Current.getEnum();
-        do
+        PNJ p = GameManager.npcs[name];
+        Encounter e = p.getCurrentEncounter();
+        Step s = e.getCurrentStep();
+        
+
+        while (s!= null)
         {
-            if (it.Current.requiredEventID != null)
+            e.incrementStep();
+            if (s.requiredEventID != null)
             {
-                if (true)//CHECK
+                
+                if (eventsStatus[s.requiredEventID])
                 {
-                    return it.Current;
+                   
+                    return s;
                 }
               
             }
-            if (it.Current.incompatibleEventID != null)
+            if (s.incompatibleEventID != null)
             {
-                if (true)//CHECK !Incompatible
+                if (!eventsStatus[s.incompatibleEventID])
                 {
-                    return it.Current;
+                    
+                    return s;
                 }
             }
-            if(it.Current.incompatibleEventID == it.Current.requiredEventID)
+
+            if (s.incompatibleEventID == s.requiredEventID)
             {
-                return it.Current;
+                return s;
             }
-
-        } while (it.MoveNext());
-
+            s = e.getCurrentStep();
+            
+        } 
         return null;
 
     }
@@ -111,18 +119,41 @@ public class GameManager : MonoBehaviour {
 
     void initializeEvent()
     {
-        string currentEvent;
-        foreach (string s in Directory.GetFiles(EventPath))
+
+        Events e = XmlHelpers.DeserializeFromXML<Events>(EventPath);
+         
+        foreach(string s in e.events)
         {
-            currentEvent = XmlHelpers.DeserializeFromXML<string>(s);
-            events.Add(currentEvent, false);
+            eventsStatus.Add(s, false);
         }
     }
+    
 
-
+    public static void eventDone(string s)
+    {
+        eventsStatus[s] = true;
+    }
 
     // Update is called once per frame
     void Update () {
 		
 	}
+
+    public static void nextEncounter(string name)
+    {
+        if(npcs[name] != null)
+        {
+            npcs[name].incrementEncounter();//getEnum().MoveNext(); //TODO Peutêtrebuggé
+        }
+    }
+
+
+    public static void isGameOver()
+    {
+        if (eventsStatus["GameOver"])
+        {
+            Player.die();
+        }
+
+    }
 }
