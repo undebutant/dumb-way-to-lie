@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 9c1dcf9612477164ea5dd469ee5af040
+timeCreated: 1511047970
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: VTKS CONTACT
+  fontNames:
+  - VTKS CONTACT
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

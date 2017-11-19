@@ -19,6 +19,10 @@ public class CanvasManager : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Text secondChoice;
 
+
+    bool isDoneBeforeDestroy = true;
+
+
     Choice c1;
     Choice c2;
 
@@ -30,7 +34,7 @@ public class CanvasManager : MonoBehaviour
 
 
     [SerializeField]
-    float timePopBubble = 0.5f;
+    float timePopBubble = 1f;
 
     GameObject upBubble;
     GameObject bottomBubble;
@@ -68,67 +72,87 @@ public class CanvasManager : MonoBehaviour
             instance.choiceCanvas.gameObject.SetActive(true);
             instance.StartCoroutine(fadeIn(instance.choiceCanvas.GetComponent<CanvasGroup>()));
             instance.currentName = name;
+            PlayerController.freezeMovement(true);
             continueConversation(name);
+
         }
     }
 
     public static void continueConversation(string name)
     {
+        instance.isListeningPnj = true;
+       
         instance.currentStep = GameManager.getNextValidStep(name);
 
         string textValue = (instance.currentStep != null)
             ? instance.currentStep.textPNJ
-            : "J'en ai fini avec vous.";
-
+            : "Vous avez fini? Je peux y aller?";
         GameObject panel;
-
+        
         if (instance.upBubble == null)
         {
             panel = SpeechFactory.getUpPNJPanel();
-            instance.upBubble = panel;
-            panel.GetComponent<UnityEngine.UI.Text>().text = textValue;
+            instance.upBubble = Instantiate<GameObject>(panel, instance.choiceCanvas.transform);
+            instance.upBubble.GetComponentInChildren<UnityEngine.UI.Text>().text = textValue;
+            instance.upBubble.SetActive(true);
+            UnityEngine.UI.Text t = instance.upBubble.GetComponentInChildren<UnityEngine.UI.Text>();
+            t.text = textValue;
         }
         else if (instance.bottomBubble == null)
         {
-            panel = SpeechFactory.getDownPNJPanel();
-            instance.bottomBubble = panel;
-            panel.GetComponent<UnityEngine.UI.Text>().text = textValue;
-        }
 
-        List<Choice>.Enumerator it = instance.currentStep.getEnum();
-        if(it.Current != null)
-        {
-            instance.firstChoice.text = it.Current.textButton;
-            instance.c1 = it.Current;
-
-            instance.secondChoice.text = it.Current.textButton; //TODO Sorry.
-            instance.c2 = it.Current;
-
-            if (it.MoveNext())
-            {
-                instance.secondChoice.text = it.Current.textButton;
-                instance.c2 = it.Current;
-            }
+            instance.bottomBubble = Instantiate<GameObject>(SpeechFactory.getDownPNJPanel(), instance.choiceCanvas.transform);
+            UnityEngine.UI.Text t = instance.bottomBubble.GetComponentInChildren<UnityEngine.UI.Text>();
+            instance.bottomBubble.SetActive(true);
+            t.text = textValue;
+            //instance.bottomBubble.GetComponent<UnityEngine.UI.Text>().text = textValue;
         }
         else
         {
+            
+            panel = Instantiate<GameObject>(SpeechFactory.getDownPNJPanel(), instance.choiceCanvas.transform);
+            UnityEngine.UI.Text t = panel.GetComponentInChildren<UnityEngine.UI.Text>();
+            t.text = textValue;
+            //instance.continueDialog = true;
+            instance.StartCoroutine(displayPNJBubble(panel));
+        }
+
+        //List<Choice>.Enumerator it = instance.currentStep.getEnum();
+
+        
+        if (instance.currentStep != null)
+        {
+            instance.c1 = instance.currentStep.getCurrentChoice();
+            instance.currentStep.incrementChoice();
+            instance.c2 = instance.currentStep.getCurrentChoice();
+
+            instance.firstChoice.text = instance.c1.textButton;
+            
+            instance.secondChoice.text = instance.c2.textButton; 
+        }
+        else
+        {
+
             instance.firstChoice.text = "Partir.";
             instance.secondChoice.text = "Partir, vraiment.";
             instance.c2 = null;
             instance.c1 = null;
         }
-
+        instance.isListeningPnj = false;
+        Debug.Log(textValue);
     }
 
 
-    public static void makeChoice(int idChoice)
+    public  void makeChoice(int idChoice)
     {
-        if (instance.isListeningPnj)
+        bool coroutine = false;
+        if (!instance.isListeningPnj && instance.isDoneBeforeDestroy)
         {
-
+            
             if (instance.c1 == null && instance.c2 == null)
             {
-                instance.StartCoroutine(fadeOut(instance.choiceCanvas.GetComponent<CanvasGroup>()));
+                // instance.StartCoroutine(fadeOut(instance.choiceCanvas.GetComponent<CanvasGroup>())); //TODO Hide? setInactive
+                hideChoice();
             }
             else
             {
@@ -137,45 +161,50 @@ public class CanvasManager : MonoBehaviour
                 {
                     textValue = instance.c1.textDisplay;
                     instance.c2 = null;
+                    if (instance.c1.eventID != null)
+                        GameManager.eventDone(instance.c1.eventID);
                 }
                 else
                 {
                     instance.c1 = null;
                     textValue = instance.c2.textDisplay;
+                    if (instance.c2.eventID != null)
+                        GameManager.eventDone(instance.c2.eventID);
                 }
-                
+
 
                 GameObject panel;
                 if (instance.upBubble == null)
                 {
                     panel = SpeechFactory.getUpPlayerPanel();
-                    instance.upBubble = panel;
-                    panel.GetComponent<UnityEngine.UI.Text>().text = textValue;
+                    instance.upBubble = Instantiate(panel,instance.choiceCanvas.transform);
+                    UnityEngine.UI.Text t = instance.upBubble.GetComponentInChildren<UnityEngine.UI.Text>();
+                    instance.bottomBubble.SetActive(true);
+                    t.text = textValue;
                 }
                 else if (instance.bottomBubble == null)
                 {
                     panel = SpeechFactory.getDownPlayerPanel();
-                    instance.bottomBubble = panel;
-                    panel.GetComponent<UnityEngine.UI.Text>().text = textValue;
+                    instance.bottomBubble = Instantiate(panel, instance.choiceCanvas.transform);
+                    instance.bottomBubble.SetActive(true);
+                    UnityEngine.UI.Text t = instance.bottomBubble.GetComponentInChildren<UnityEngine.UI.Text>();
+                    t.text = textValue;
+
                 }
                 else
                 {
-                    panel = SpeechFactory.getDownPlayerPanel();
+                    
+                    panel = Instantiate(SpeechFactory.getDownPlayerPanel(), instance.choiceCanvas.transform);
+                    UnityEngine.UI.Text t = panel.GetComponentInChildren<UnityEngine.UI.Text>();
+                    t.text = textValue;
+                     coroutine = true;
                     instance.StartCoroutine(displayPlayerBubble(panel));//Coroutine faire monter
                 }
-                //TODO: UpdateBoolTABLE
+            if(!coroutine)
+                instance.StartCoroutine(displayPlayerBubble(null));
             }
-
-
+           
         }
-        //COROUTIN
-
-
-
-        //Locker les boutons
-        //Coroutine (1 secondes) qui affiche la réponse.
-        //MoveNext
-        //Recharche le contenu des boutons.
     }
 
 
@@ -187,36 +216,80 @@ public class CanvasManager : MonoBehaviour
         {
             instance.choiceCanvas.gameObject.SetActive(false);
             instance.StartCoroutine(fadeOut(instance.choiceCanvas.GetComponent<CanvasGroup>()));
+            GameManager.nextEncounter(instance.currentName);
+            Destroy(instance.upBubble);
+            Destroy(instance.bottomBubble);
+            foreach(GameObject g in instance.garbage)
+            {
+                Destroy(g);
+            }
+            GameManager.isGameOver();
+            SideScrolling.FocusOnPlayer();
+            SideScrolling.zoomOnTarget();
+            PlayerController.freezeMovement(false);
         }
+    }
+
+
+
+    static IEnumerator displayPNJBubble(GameObject panel)
+    {
+        instance.isDoneBeforeDestroy = false;
+        float t = 0;
+        Vector3 finalPosition = instance.upBubble.transform.position;
+        Vector3 startPosition = instance.bottomBubble.transform.position;
+        if (panel != null)
+        {
+            instance.garbage.Add(instance.upBubble);
+            instance.upBubble.SetActive(false);
+
+            instance.upBubble = instance.bottomBubble;
+
+            while (t < instance.timePopBubble*2)
+            {
+
+                instance.upBubble.transform.position = Vector3.Lerp(startPosition, finalPosition, t / (instance.timePopBubble*2));
+                t += Time.deltaTime;
+                yield return null;
+            }
+            instance.bottomBubble = panel; 
+            panel.SetActive(true);
+        }
+         yield return null;
+        instance.isDoneBeforeDestroy = true;
     }
 
 
     static IEnumerator displayPlayerBubble(GameObject panel)
     {
-        instance.isListeningPnj = true;
+        instance.isDoneBeforeDestroy = false;
         float t = 0;
         Vector3 finalPosition = instance.upBubble.transform.position;
         Vector3 startPosition = instance.bottomBubble.transform.position;
-        instance.garbage.Add(instance.upBubble);
-        instance.upBubble.SetActive(false);
-
-        instance.upBubble = instance.bottomBubble;
-
-        while (t < instance.timePopBubble)
+        instance.isListeningPnj = true;
+        if (panel != null)
         {
-           
-            instance.upBubble.transform.position = Vector3.Lerp(startPosition, finalPosition, t/instance.timePopBubble);
-            t += Time.deltaTime;
-            yield return null;
+            instance.garbage.Add(instance.upBubble);
+            instance.upBubble.SetActive(false);
+
+            instance.upBubble = instance.bottomBubble;
+
+            while (t < instance.timePopBubble)
+            {
+
+                instance.upBubble.transform.position = Vector3.Lerp(startPosition, finalPosition, t / instance.timePopBubble);
+                t += Time.deltaTime;
+                yield return null;
+            }
+            instance.bottomBubble = panel;
+            panel.SetActive(true);
         }
-        instance.bottomBubble = panel;
-        Instantiate(panel);
         yield return null;
         if((instance.c1 != null && instance.c1.response != null) || (instance.c2 != null && instance.c2.response != null))
         {
             t = 0;
-            panel = SpeechFactory.getDownPNJPanel();
-            panel.GetComponent<UnityEngine.UI.Text>().text = (instance.c1 == null) ? instance.c2.response : instance.c1.response;
+            panel = Instantiate(SpeechFactory.getDownPNJPanel(), instance.choiceCanvas.transform);
+            panel.GetComponentInChildren<UnityEngine.UI.Text>().text = (instance.c1 == null) ? instance.c2.response : instance.c1.response;
             finalPosition = instance.upBubble.transform.position;
             startPosition = instance.bottomBubble.transform.position;
             instance.garbage.Add(instance.upBubble);
@@ -232,9 +305,11 @@ public class CanvasManager : MonoBehaviour
                 yield return null;
             }
             instance.bottomBubble = panel;
-            Instantiate(panel);
+            panel.SetActive(true);
         }
-        instance.isListeningPnj = true;
+        instance.isListeningPnj = false;
+        //if(!instance.continueDialog)
+        instance.isDoneBeforeDestroy = true;
         continueConversation(instance.currentName);
         yield return null;
     }
