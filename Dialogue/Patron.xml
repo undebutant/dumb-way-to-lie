@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PNJ>
+	<name>Patron</name>
+	<firstDay>1</firstDay>
+	<Encounter id="1" posX="3" posY="0">
+		<nextDayEncounter>1</nextDayEncounter>
+		<Step idStep="1">
+			<textPNJ>Vous partez si tôt, Jean ? J'ose espérer que vous n'avez pas oublié le dossier Scharkotsky...</textPNJ>
+			<Choice>
+				<textButton>Excuses</textButton>
+				<textDisplay>Je m'excuse monsieur, ça m'est complètement sorti de la tête...</textDisplay>
+				<eventID>GameOver</eventID>
+				<response>Monsieur Dupont, êtes vous conscient que vous venez de nous faire perdre un contrat de 4 millions d'euros? Vous n'avez clairement rien à faire avec nous. Je suis navré, mais vous allez devoir nous quitter.</response>
+			</Choice>
+			<Choice>
+				<textButton>Embobiner</textButton>
+				<textDisplay>Bien sûr que non, Monsieur. Il sera sur votre bureau dés demain matin, il ne reste que les finalités du dossier.</textDisplay>
+        <response>Bien, vous m'avez inquiété pendant quelques secondes.</response>
+			</Choice>
+		</Step>
+	</Encounter>
+	<Encounter id="2" posX="0" posY="0">
+		<nextDayEncounter>0</nextDayEncounter>
+		<Step idStep="1">
+			<textPNJ>Vous pourriez m'expliquer votre retard, Monsieur Dupont ?</textPNJ>
+			<Choice>
+				<textButton>Blessé</textButton>
+				<textDisplay>Je m'excuse Monsieur, je me suis blessé en arrivant au travail ce matin, ça m'a grandement ralenti</textDisplay>
+				<eventID>Blesse</eventID>
+			</Choice>
+			<Choice>
+				<textButton>Chat blessé</textButton>
+				<textDisplay>J'ai eu un problème avec mon chat, j'ai du l'emmener d'urgence chez le vétérinaire.</textDisplay>
+				<eventID>Chat</eventID>
+			</Choice>
+		</Step>
+		<Step idStep="2" requiredEventID="Chat">
+			<textPNJ>Pour quelle raison?</textPNJ>
+			<Choice>
+				<textButton>Travaux</textButton>
+				<textDisplay>Il y avait des travaux en ville, et il s'est coincé la patte dans un trou</textDisplay>
+				<response>J'espère qu'a l'avenir vous saurez mieux gérer vos priorités. Mais le dossier est là, bon travail.</response>
+			</Choice>
+			<Choice>
+				<textButton>Conducteur</textButton>
+				<textDisplay>Il s'est fait heurter par un conducteur sou</textDisplay>
+				<response>J'espère qu'a l'avenir vous saurez mieux gérer vos priorités. Mais le dossier est là, bon travail.</response>
+			</Choice>
+		</Step>
+
+		<Step idStep="3" requiredEventID="Blesse">
+			<textPNJ>Et pourrais-je savoir comment vous vous êtes blessé?</textPNJ>
+			<Choice>
+				<textButton>Travaux</textButton>
+				<textDisplay>Il y a des travaux en ville, je me suis tordu la cheville dans un trou</textDisplay>
+				<response>Je n'étais pas au courant...c'est pas de chance, mais au moins le dossier est là. Bon travail.</response>
+			</Choice>
+			<Choice>
+				<textButton>Conducteur</textButton>
+				<textDisplay>Un conducteur sou m'a heurté</textDisplay>
+				<response>Vous n'avez vraiment pas de chance, mais au moins le dossier est là. Bon travail.</response>
+			</Choice>
+		</Step>
+	</Encounter>
+</PNJ>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Events>
+	<event>GameOver</event>
+	<event>Chat</event>
+	<event>Blesse</event>
+</Events>
