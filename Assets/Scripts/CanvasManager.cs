@@ -20,6 +20,9 @@ public class CanvasManager : MonoBehaviour
     private UnityEngine.UI.Text secondChoice;
 
 
+    bool isDoneBeforeDestroy = true;
+
+
     Choice c1;
     Choice c2;
 
@@ -85,7 +88,7 @@ public class CanvasManager : MonoBehaviour
             ? instance.currentStep.textPNJ
             : "Vous avez fini? Je peux y aller?";
         GameObject panel;
-        Debug.Log(textValue);
+        
         if (instance.upBubble == null)
         {
             panel = SpeechFactory.getUpPNJPanel();
@@ -143,7 +146,7 @@ public class CanvasManager : MonoBehaviour
     public  void makeChoice(int idChoice)
     {
         bool coroutine = false;
-        if (!instance.isListeningPnj)
+        if (!instance.isListeningPnj && instance.isDoneBeforeDestroy)
         {
             
             if (instance.c1 == null && instance.c2 == null)
@@ -231,6 +234,7 @@ public class CanvasManager : MonoBehaviour
 
     static IEnumerator displayPNJBubble(GameObject panel)
     {
+        instance.isDoneBeforeDestroy = false;
         float t = 0;
         Vector3 finalPosition = instance.upBubble.transform.position;
         Vector3 startPosition = instance.bottomBubble.transform.position;
@@ -252,11 +256,13 @@ public class CanvasManager : MonoBehaviour
             panel.SetActive(true);
         }
          yield return null;
+        instance.isDoneBeforeDestroy = true;
     }
 
 
     static IEnumerator displayPlayerBubble(GameObject panel)
     {
+        instance.isDoneBeforeDestroy = false;
         float t = 0;
         Vector3 finalPosition = instance.upBubble.transform.position;
         Vector3 startPosition = instance.bottomBubble.transform.position;
@@ -302,7 +308,8 @@ public class CanvasManager : MonoBehaviour
             panel.SetActive(true);
         }
         instance.isListeningPnj = false;
-//if(!instance.continueDialog)
+        //if(!instance.continueDialog)
+        instance.isDoneBeforeDestroy = true;
         continueConversation(instance.currentName);
         yield return null;
     }

@@ -65,27 +65,22 @@ public class GameManager : MonoBehaviour {
         Encounter e = p.getCurrentEncounter();
         Step s = e.getCurrentStep();
         
-        foreach(KeyValuePair<string,bool> k in eventsStatus)
-        {
-            Debug.Log(k.Key + " " + k.Value);
-        }
 
         while (s!= null)
         {
             e.incrementStep();
             if (s.requiredEventID != null)
             {
-                Debug.Log(s.requiredEventID);
+                
                 if (eventsStatus[s.requiredEventID])
                 {
-                    Debug.Log("JE suis CEO");
+                   
                     return s;
                 }
               
             }
             if (s.incompatibleEventID != null)
             {
-                Debug.Log(s.incompatibleEventID);
                 if (!eventsStatus[s.incompatibleEventID])
                 {
                     
