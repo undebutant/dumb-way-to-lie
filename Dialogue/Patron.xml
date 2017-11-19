@@ -40,11 +40,13 @@
 				<textButton>Travaux</textButton>
 				<textDisplay>Il y avait des travaux en ville, et il s'est coincé la patte dans un trou</textDisplay>
 				<response>J'espère qu'a l'avenir vous saurez mieux gérer vos priorités. Mais le dossier est là, bon travail.</response>
+				<eventID>Travaux</eventID>
 			</Choice>
 			<Choice>
 				<textButton>Conducteur</textButton>
 				<textDisplay>Il s'est fait heurter par un conducteur sou</textDisplay>
 				<response>J'espère qu'a l'avenir vous saurez mieux gérer vos priorités. Mais le dossier est là, bon travail.</response>
+				<eventID>Sou</eventID>
 			</Choice>
 		</Step>
 
@@ -54,11 +56,13 @@
 				<textButton>Travaux</textButton>
 				<textDisplay>Il y a des travaux en ville, je me suis tordu la cheville dans un trou</textDisplay>
 				<response>Je n'étais pas au courant...c'est pas de chance, mais au moins le dossier est là. Bon travail.</response>
+				<eventID>Travaux</eventID>
 			</Choice>
 			<Choice>
 				<textButton>Conducteur</textButton>
 				<textDisplay>Un conducteur sou m'a heurté</textDisplay>
 				<response>Vous n'avez vraiment pas de chance, mais au moins le dossier est là. Bon travail.</response>
+				<eventID>Sou</eventID>
 			</Choice>
 		</Step>
 	</Encounter>
