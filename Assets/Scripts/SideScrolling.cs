@@ -28,13 +28,15 @@ public class SideScrolling : MonoBehaviour {
     float zoomFOV = 2.5f;
 
 
-
     private static bool isLerping = false;
     private static bool isZooming = false;
+    
     private static Vector3 tmp;
 
+    private Camera cam;
 
-
+    [SerializeField]
+    public GameObject emptyTarget;
 
     private void Awake()
     {
@@ -57,7 +59,9 @@ public class SideScrolling : MonoBehaviour {
     // Use this for initialization
     void Start () {
         tmp = Vector3.zero;
-	}
+        cam = this.GetComponent<Camera>();
+        
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -68,7 +72,7 @@ public class SideScrolling : MonoBehaviour {
             tmp.x = target.transform.position.x;
             this.transform.position = tmp;
         }
-        
+
 	}
 
     public static void zoomOnTarget()
@@ -127,7 +131,7 @@ public class SideScrolling : MonoBehaviour {
         }
 
         c.orthographicSize = Mathf.Round(c.orthographicSize);
-
+      
         isZooming = false;
 
     }
