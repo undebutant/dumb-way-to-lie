@@ -19,9 +19,6 @@ public class CanvasManager : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Text secondChoice;
 
-    List<Step>.Enumerator it;
-
-    bool continueDialog = false;
 
     Choice c1;
     Choice c2;
@@ -72,7 +69,9 @@ public class CanvasManager : MonoBehaviour
             instance.choiceCanvas.gameObject.SetActive(true);
             instance.StartCoroutine(fadeIn(instance.choiceCanvas.GetComponent<CanvasGroup>()));
             instance.currentName = name;
+            PlayerController.freezeMovement(true);
             continueConversation(name);
+
         }
     }
 
@@ -86,7 +85,7 @@ public class CanvasManager : MonoBehaviour
             ? instance.currentStep.textPNJ
             : "Vous avez fini? Je peux y aller?";
         GameObject panel;
-
+        Debug.Log(textValue);
         if (instance.upBubble == null)
         {
             panel = SpeechFactory.getUpPNJPanel();
@@ -137,7 +136,7 @@ public class CanvasManager : MonoBehaviour
             instance.c1 = null;
         }
         instance.isListeningPnj = false;
-
+        Debug.Log(textValue);
     }
 
 
@@ -159,11 +158,15 @@ public class CanvasManager : MonoBehaviour
                 {
                     textValue = instance.c1.textDisplay;
                     instance.c2 = null;
+                    if (instance.c1.eventID != null)
+                        GameManager.eventDone(instance.c1.eventID);
                 }
                 else
                 {
                     instance.c1 = null;
                     textValue = instance.c2.textDisplay;
+                    if (instance.c2.eventID != null)
+                        GameManager.eventDone(instance.c2.eventID);
                 }
 
 
@@ -194,10 +197,10 @@ public class CanvasManager : MonoBehaviour
                      coroutine = true;
                     instance.StartCoroutine(displayPlayerBubble(panel));//Coroutine faire monter
                 }
-                //TODO: UpdateBoolTABLE
-            }
             if(!coroutine)
-            instance.StartCoroutine(displayPlayerBubble(null));
+                instance.StartCoroutine(displayPlayerBubble(null));
+            }
+           
         }
     }
 
@@ -211,14 +214,16 @@ public class CanvasManager : MonoBehaviour
             instance.choiceCanvas.gameObject.SetActive(false);
             instance.StartCoroutine(fadeOut(instance.choiceCanvas.GetComponent<CanvasGroup>()));
             GameManager.nextEncounter(instance.currentName);
-            
+            Destroy(instance.upBubble);
+            Destroy(instance.bottomBubble);
             foreach(GameObject g in instance.garbage)
             {
                 Destroy(g);
             }
-
+            GameManager.isGameOver();
             SideScrolling.FocusOnPlayer();
             SideScrolling.zoomOnTarget();
+            PlayerController.freezeMovement(false);
         }
     }
 
@@ -274,7 +279,7 @@ public class CanvasManager : MonoBehaviour
             panel.SetActive(true);
         }
         yield return null;
-        if(!instance.continueDialog && (instance.c1 != null && instance.c1.response != null) || (instance.c2 != null && instance.c2.response != null))
+        if((instance.c1 != null && instance.c1.response != null) || (instance.c2 != null && instance.c2.response != null))
         {
             t = 0;
             panel = Instantiate(SpeechFactory.getDownPNJPanel(), instance.choiceCanvas.transform);
