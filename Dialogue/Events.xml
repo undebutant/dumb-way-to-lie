@@ -4,4 +4,6 @@
 	<event>Chat</event>
 	<event>Blesse</event>
 	<event>SBO</event>
+	<event>Distrait</event>
+	<event>Argent</event>
 </Events>

@@ -13,7 +13,7 @@
 			</Choice>
 			<Choice>
 				<textButton>Demande rendez-vous</textButton>
-				<textDisplay>*...T'es vraiment dingue, jamais elle accepterait...*  Mon chien s'est encore enfui, je dois me dépecher, à demain !</textDisplay>
+				<textDisplay>(...T'es vraiment dingue, jamais elle accepterait...)  Mon chien s'est encore enfui, je dois me dépecher, à demain !</textDisplay>
 			</Choice>
 		</Step>
 	</Encounter>

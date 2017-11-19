@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PNJ>
+	<name>Mendiant</name>
+	<firstDay>1</firstDay>
+	<Encounter id="1" posX="3" posY="0">
+		<nextDayEncounter>1</nextDayEncounter>
+		<Step idStep="1">
+			<textPNJ>Bonjour Monsieur, une petite pièce pour un pauvre homme sans abri?</textPNJ>
+			<Choice>
+				<textButton>Rien</textButton>
+				<textDisplay>Je n'ai rien sur moi, je suis désolé.</textDisplay>
+				<response>Pas de problème, monsieur! Au plésir de vous revoir, je serais ici 24h/24, du lundi au dimanche !</response>
+			</Choice>
+			<Choice>
+				<textButton>Pas envie</textButton>
+				<textDisplay>(N'importe quoi, comment je pourrais lui dire ça?) Je suis pressé je dois prendre le train ! </textDisplay>
+				<response>Pas de problème, monsieur! Au plésir de vous revoir, je serais ici 24h/24, du lundi au dimanche !</response>
+			</Choice>
+		</Step>
+	</Encounter>
+	<Encounter id="2" posX="0" posY="0">
+		<nextDayEncounter>1</nextDayEncounter>
+		<Step idStep="1">
+			<textPNJ>Tiens! C'est vous! Comment ça va depuis le temps? Dites moi, vous n'auriez pas quelques petites pièces? Les temps sont durs, vous savez.</textPNJ>
+			<Choice>
+				<textButton>Distraire</textButton>
+				<textDisplay>Non toujours pas, par contre vous voyez cet homme là bas? Il paraît qu'il est complètement blindé, ça vaut le coup d'essayer.</textDisplay>
+				<eventID>Distrait</eventID>
+				<response>Aaaaah merci beaucoup mon bon monsieur! </response>
+			</Choice>
+			<Choice>
+				<textButton>Vol d'argent</textButton>
+				<textDisplay>Absolument pas, je me suis fait voler tout mon argent il y a quelques heures...</textDisplay>
+				<eventID>Argent</eventID>
+				<response>Oh quelle horreur! Tenez, prenez mes $7.62, vous en avez clairement plus besoin que moi.</response>
+			</Choice>
+		</Step>
+	</Encounter>
+	<Encounter id="3" posX="0" posY="0">
+		<nextDayEncounter>0</nextDayEncounter>
+		<Step idStep="1" requiredEventID="Distrait">
+			<textPNJ>Décidément, nous sommes déstinés à nous croiser ! D'ailleurs hier vous n'aviez pas pointé vers une personne mais vers un panneau de signalisation. J'imagine que l'erreur est humaine ! Hahaha</textPNJ>
+			<Choice>
+				<textButton>Distraire</textButton>
+				<textDisplay>Autant pour moi, j'ai dû mal voir. Mais aujourd'hui il est de retour, regardez, là-bas !</textDisplay>
+				<response>C'est vrai?! J'y cours, merci beaucoup! </response>
+			</Choice>
+			<Choice>
+				<textButton>Magicien</textButton>
+				<textDisplay>Aaaaah vous vous êtes fait avoir par son déguisement. Seuls les plus perspicaces peuvent déceller son subterfuge.</textDisplay>
+				<response>Vous...vous voulez dire qu'il était déguisé en panneau de signalisation? Incroyable! Je vais voir s'il y est encore, merci pour tout mon cher monsieur!</response>
+			</Choice>
+		</Step>
+		<Step idStep="2" requiredEventID="Argent">
+			<textPNJ>Décidément, nous sommes déstinés à nous croiser ! Auriez-vous de la petite monnaie aujourd'hui?</textPNJ>
+			<Choice>
+				<textButton>Rendre les $7.26</textButton>
+				<textDisplay>Tenez, j'espère que cette petite contribution vous sera utile.</textDisplay>
+				<response>Quelle bonté !! Merci beaucoup ! </response>
+			</Choice>
+			<Choice>
+				<textButton>Billets brûlés</textButton>
+				<textDisplay>Malheureusement non, mes billets ont été pris par une soudaine combustion spontanée plus tôt ce matin...</textDisplay>
+				<response>Alors ça! Vous êtes vraiment malchanceux, je n'aimerais pas être à votre place.</response>
+			</Choice>
+		</Step>
+	</Encounter>
+</PNJ>
