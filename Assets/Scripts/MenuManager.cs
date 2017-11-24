@@ -21,7 +21,7 @@ public class MenuManager : MonoBehaviour {
 
     public void OnClickStart()
     {
-        SceneManager.LoadScene("SceneGraphique"); //TODO : Remplacer par la bonne scene
+        SceneManager.LoadScene("GameLevel");
     }
 
     public void OnClickLeave()

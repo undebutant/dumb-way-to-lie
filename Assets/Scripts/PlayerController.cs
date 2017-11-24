@@ -26,22 +26,23 @@ public class PlayerController : MonoBehaviour,Interactor {
     Rigidbody2D r;
     Vector3 acceleration;
     private Interactible interactible = null;
-    private enum jump {grounded, jump, doubleJump };
-    private jump jumpState=jump.grounded;
+    //private enum jump {grounded, jump, doubleJump };
+    //private jump jumpState=jump.grounded;
 
     #region playerAnimation
     private Animator playerAnimator;
     private SpriteRenderer spRender;
     private bool facingRigh = true;
     private bool oldDirection = true;
-    private bool jumping = false;
-    private Vector3 SpeedY; // Speed (ancienY, nouvelY, vitesseY)
+    private bool interacting = false;
+    //private bool jumping = false;
+    //private Vector3 SpeedY; // Speed (ancienY, nouvelY, vitesseY)
     #endregion
 
     static bool freeze = false;
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+  /*  private void OnCollisionEnter2D(Collision2D collision)
     {
         jumpState = jump.grounded;
         jumping = false;
@@ -50,9 +51,9 @@ public class PlayerController : MonoBehaviour,Interactor {
         {
             playerAnimator.SetBool("Jumping", false);
         }
-    }
+    }*/
 
-    private void OnCollisionExit2D(Collision2D collision)
+   /* private void OnCollisionExit2D(Collision2D collision)
     {
         jumpState = jump.jump;
         jumping = true;
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour,Interactor {
         {
             playerAnimator.SetBool("Jumping", true);
         }   
-    }
+    }*/
 
     public void removeInteractible(Interactible i)
     {
@@ -84,7 +85,7 @@ public class PlayerController : MonoBehaviour,Interactor {
         r = this.GetComponent<Rigidbody2D>();
         spRender = this.GetComponent<SpriteRenderer>();
         playerAnimator = this.GetComponent<Animator>();
-        SpeedY = Vector3.zero;
+        //SpeedY = Vector3.zero;
 	}
 	
 	// Update is called once per frame
@@ -92,21 +93,28 @@ public class PlayerController : MonoBehaviour,Interactor {
     {
         if (!freeze)
         {
-
+            if (interacting)
+            {
+                playerAnimator.SetBool("Interacting",false);
+                interacting = false;
+            }
         
             if (InputController.getSprintButtonDown())
             {
                 accelerationFactor *= 2; //TODO: c'est très sale.
+                playerAnimator.SetBool("Sprinting", true);
+                
             }
             else if (InputController.getSprintButtonUp())
             {
                 accelerationFactor /= 2;
+                playerAnimator.SetBool("Sprinting", false);
             }
 
             acceleration.x = InputController.getXAxis() * playerSpeedFactor * Time.deltaTime * accelerationFactor;
 
 
-            if (InputController.getJump())
+            /*if (InputController.getJump())
             {
                 switch (jumpState)
                 {
@@ -128,10 +136,10 @@ public class PlayerController : MonoBehaviour,Interactor {
                         break;
                     case jump.doubleJump:
                         break;
-                }
+                }*/
             
                 //this.r.velocity = acceleration * inertiaFactor;
-            }
+            //}
 
             /*
             if(r.velocity.x != 0)
@@ -148,13 +156,17 @@ public class PlayerController : MonoBehaviour,Interactor {
             if (playerAnimator)
             {
                 playerAnimator.SetFloat("Speed", Mathf.Abs(10 * acceleration.x));
-                if (jumping)
+                if (acceleration.x<0.1)
+                {
+                    playerAnimator.SetBool("Sprinting", false);
+                }
+                /*if (jumping)
                 {
                     SpeedY.y = SpeedY.x; //new devient old
                     SpeedY.x = this.transform.position.y; //enregistrer la position actuelle
                     SpeedY.z = SpeedY.y - SpeedY.x;
                     playerAnimator.SetFloat("SpeedJump", SpeedY.z);
-                }
+                }*/
             }
             if (acceleration.x>0.001)
             {
@@ -165,7 +177,6 @@ public class PlayerController : MonoBehaviour,Interactor {
                         spRender.flipX = false;
                     oldDirection = facingRigh;
                 }
-            
             }
 
             if (acceleration.x<-0.001)
@@ -185,6 +196,11 @@ public class PlayerController : MonoBehaviour,Interactor {
             {
                 interactible.doSomeStuff();
                 this.interactible = null;
+                if (playerAnimator)
+                {
+                    playerAnimator.SetBool("Interacting", true);
+                    interacting = true;
+                }                   
             }
 
             if (this.transform.position.y < -20)

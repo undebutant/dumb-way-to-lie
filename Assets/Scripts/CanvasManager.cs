@@ -86,7 +86,7 @@ public class CanvasManager : MonoBehaviour
 
         string textValue = (instance.currentStep != null)
             ? instance.currentStep.textPNJ
-            : "Vous avez fini? Je peux y aller?";
+            : "** Fin de dialogue **";
         GameObject panel;
         
         if (instance.upBubble == null)
@@ -223,8 +223,8 @@ public class CanvasManager : MonoBehaviour
             {
                 Destroy(g);
             }
-            GameManager.isGameOver();
-            SideScrolling.FocusOnPlayer();
+           // GameManager.isGameOver();
+            //SideScrolling.FocusOnPlayer();
             SideScrolling.zoomOnTarget();
             PlayerController.freezeMovement(false);
         }

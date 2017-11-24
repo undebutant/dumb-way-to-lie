@@ -2,4 +2,7 @@
 <Events>
 	<event>GameOver</event>
 	<event>CEO</event>
+  <event>Rat</event>
+  <event>Paris</event>
+  <event>Bourse</event>
 </Events>

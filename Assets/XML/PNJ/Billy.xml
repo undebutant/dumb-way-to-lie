@@ -2,31 +2,47 @@
 <PNJ>
 	<name>Billy</name>
 	<firstDay>1</firstDay>
-	<Encounter id="1" posX="3" posY="0">
+	<Encounter id="1" posX="-450" posY="56.2">
 		<nextDayEncounter>1</nextDayEncounter>
 		<Step idStep="1">
-			<textPNJ>Bonjour, alors ce week-end?</textPNJ>
+			<textPNJ>Bon, c'est le troisième cette semaine, c'est toi qui as cassé le vase?</textPNJ>
 			<Choice>
-				<textButton>Bahamas</textButton>
-				<textDisplay>Oh tu sais, les bahamas tout ça tout ça.</textDisplay>
+				<textButton>Nier les faits.</textButton>
+				<textDisplay>De quoi? Mais non j'étais en déplacement à Paris toute la journée. Je l'aurais cassé quand?</textDisplay>
+				<eventID>Paris</eventID>
 			</Choice>
 			<Choice>
-				<textButton>Chez mamy</textButton>
-				<textDisplay>Chez... Demande à ta mère!</textDisplay>
-				<eventID>GameOver</eventID>
-        <response>FILS DE PUTE!</response>
+				<textButton>Blâmer votre collègue.</textButton>
+				<textDisplay>Ah c'était donc ça ce gros bruit? J'espère que philippe va mieux.</textDisplay>
+				<eventID>Rat</eventID>
 			</Choice>
 		</Step>
-		<Step idStep="2">
-			<textPNJ>Génial, je suis trop jaloux! T'es pété de thune et moi pas.</textPNJ>
+		<Step idStep="2" requiredEventID="Paris">
+			<textPNJ>C'est plus possible, ça commence à coûter cher ces conneries. Paris vous dîtes? Ça me dit rien.</textPNJ>
 			<Choice>
-				<textButton>Euh...</textButton>
-				<textDisplay>J'irais quand même pas jusque là. J'ai joué au bingo</textDisplay>
+				<textButton>Improviser.</textButton>
+				<textDisplay>Oui, ma soeur a accouché il y a une semaine...</textDisplay>
+				<response> Encore? Bon allez, cassez vous.</response>
 			</Choice>
 			<Choice>
-				<textButton>Poste de rêve.</textButton>
-				<textDisplay>Tu sais, en tant que CEO, ça rapporte.</textDisplay>
-				<eventID>CEO</eventID>
+				<textButton>Se faire mousser.</textButton>
+				<textDisplay>Oui, j'étais avec les actionnaires et je vous ai fait gagner trois points.</textDisplay>
+				<eventID>Bourse</eventID>
+				<response>Mais, on est même pas en bourse.</response>
+			</Choice>
+		</Step>
+		<Step idStep="2" requiredEventID="Rat">
+			<textPNJ>Philippe? De la compta au troisième?</textPNJ>
+			<Choice>
+				<textButton>Oui.</textButton>
+				<textDisplay>Oui, lui même.</textDisplay>
+				<response> Il est pas mort il y a trois jours?</response>
+			</Choice>
+			<Choice>
+				<textButton>Non.</textButton>
+				<textDisplay>Candelloro, vous savez. Le cuisinier. Il fait une de ces sauces au piment d'espelette à tomber. Comme votre vase.</textDisplay>
+				<eventID>GameOver</eventID>
+				<response>Bon, ça va bien deux minutes, vous pouvez cassez mes vases, mais ne touchez pas à Candelloro.</response>
 			</Choice>
 		</Step>
 	</Encounter>

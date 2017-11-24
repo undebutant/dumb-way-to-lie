@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PNJ>
+	<name>Gontrand</name>
+	<firstDay>1</firstDay>
+	<Encounter id="2" posX="-200" posY="56.3">
+		<nextDayEncounter>1</nextDayEncounter>
+		<Step idStep="1">
+			<textPNJ>Bonjour, alors, ce week-end?</textPNJ>
+			<Choice>
+				<textButton>Bahamas</textButton>
+				<textDisplay>Oh tu sais, les bahamas tout ça tout ça.</textDisplay>
+			</Choice>
+			<Choice>
+				<textButton>Chez mamy</textButton>
+				<textDisplay>Chez... Demande à ta mère!</textDisplay>
+				<eventID>GameOver</eventID>
+        <response>Ma mère ?</response>
+			</Choice>
+		</Step>
+		<Step idStep="2">
+			<textPNJ>Génial, je suis trop jaloux! T'es pété de thune et moi pas.</textPNJ>
+			<Choice>
+				<textButton>Euh...</textButton>
+				<textDisplay>J'irais quand même pas jusque là. J'ai joué au bingo</textDisplay>
+			</Choice>
+			<Choice>
+				<textButton>Poste de rêve.</textButton>
+				<textDisplay>Tu sais, en tant que CEO, ça rapporte.</textDisplay>
+				<eventID>CEO</eventID>
+			</Choice>
+		</Step>
+	</Encounter>
+	<Encounter id="2" posX="0" posY="0">
+		<nextDayEncounter>0</nextDayEncounter>
+		<Step idStep="1" requiredEventID="CEO">
+			<textPNJ>Alors, ça se passe comment ta boite?</textPNJ>
+			<Choice>
+				<textButton>Quelle boite?</textButton>
+				<textDisplay>Secret défense, je peux rien révéler.</textDisplay>
+			</Choice>
+			<Choice>
+				<textButton>Faillite.</textButton>
+				<textDisplay>J'ai déposé le bilan en partant aux bahamas.</textDisplay>
+				<eventID>GameOver</eventID>
+			</Choice>
+		</Step>
+		<Step idStep="2" incompatibleEventID="CEO">
+			<textPNJ>J'ai essayé le bingo, c'est pas fou!</textPNJ>
+			<Choice>
+				<textButton>Le Bingo?</textButton>
+				<textDisplay>Y a que les vieux qui jouent au bingo!</textDisplay>
+			</Choice>
+			<Choice>
+				<textButton>ça rapporte</textButton>
+				<textDisplay>Ouais mais, les prix sont biens!</textDisplay>
+			</Choice>
+		</Step>
+
+		<Step idStep="3">
+			<textPNJ>Changement de sujet, j'ai croisé le maire il était tout bizarre.</textPNJ>
+			<Choice>
+				<textButton>Merci pour l'info</textButton>
+				<textDisplay>Ah, je vais aller lui parler.</textDisplay>
+			</Choice>
+			<Choice>
+				<textButton>Illuminati confirmed!</textButton>
+				<textDisplay>Surement un raptor jésus.</textDisplay>
+			</Choice>
+		</Step>
+	</Encounter>
+</PNJ>

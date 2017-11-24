@@ -48,10 +48,11 @@ public class Player : MonoBehaviour {
         Player.instance.transform.position = (chckpt!= null)
                                             ? chckpt.transform.position
                                             :startPosition;
-        if (instance.playerAnimator)
+
+        /*if (instance.playerAnimator)
         {
             instance.playerAnimator.SetBool("Jumping", false);
-        }
+        }*/
     }
 
 

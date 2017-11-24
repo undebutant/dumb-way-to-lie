@@ -9,6 +9,7 @@ public class NPC : Interactible
     private Animator PNJAnimator;
     private float originePosition;
     private Vector3 currentPosition;
+    [SerializeField]
     private float rangeMouv = 20f; //xml
     private float mouvSpeed = 5;
     private bool facingRight = true;
